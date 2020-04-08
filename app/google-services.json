@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "676485909517",
+    "firebase_url": "https://lcmuniz01-68532.firebaseio.com",
+    "project_id": "lcmuniz01-68532",
+    "storage_bucket": "lcmuniz01-68532.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676485909517:android:56d836aa09f0aa96e25944",
+        "android_client_info": {
+          "package_name": "com.eficaztech.firebasedemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "676485909517-6iopsfndsuqqp89ptb0m7b5gg508sr46.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5k-bkBMlzRe3kR22UrLpuUwU8Oh8amuI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "676485909517-6iopsfndsuqqp89ptb0m7b5gg508sr46.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

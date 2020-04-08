@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">FirebaseDemo</string>
+    <string name="usuarios">Usuários</string>
+    <string name="clientes">Clientes</string>
+    <string name="adicionar">Adicionar</string>
+    <string name="cpf">CPF</string>
+    <string name="nome">Nome</string>
+    <string name="e_mail">E-Mail</string>
+    <string name="cliente">Cliente</string>
+    <string name="empresa">Empresa</string>
+    <string name="cnpj">CNPJ</string>
+    <string name="endereco">Endereço</string>
+    <string name="empresas">Empresas</string>
+    <string name="produto">Produto</string>
+    <string name="codigo">Código</string>
+    <string name="preco">Preço</string>
+    <string name="produtos">Produtos</string>
+    <string name="excluir">Excluir</string>
+</resources>
