@@ -1,6 +1,7 @@
 package com.eficaztech.firebasedemo.model;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class ItemPedido  {
     private String codigo;
@@ -23,12 +24,6 @@ public class ItemPedido  {
         this.quantidade = quantidade;
     }
 
-    @NonNull
-    @Override
-    public String toString() {
-        return "ItemPedido = { codigo = \"" + codigo + "\", produto = \"" + produto + "\", quantidade = " + quantidade + " }";
-    }
-
     public Produto getProduto() {
         return produto;
     }
@@ -36,4 +31,20 @@ public class ItemPedido  {
     public void setProduto(Produto produto) {
         this.produto = produto;
     }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "ItemPedido = { codigo = \"" + codigo + "\", produto = \"" + produto + "\", quantidade = " + quantidade + " }";
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj == null) return false;
+        if (!(obj instanceof ItemPedido)) return false;
+        ItemPedido o = (ItemPedido) obj;
+        if (o.getCodigo().equals(this.getCodigo())) return true;
+        return false;
+    }
+
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ClienteActivity">
+    tools:context=".view.FuncionarioActivity">
 
     <TextView
         android:background="@color/colorAccent"
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/cliente"
+        android:text="@string/funcionario"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -61,30 +61,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nomeEditText" />
 
-
-
-
-    <Button
-        android:id="@+id/salvarButton"
+    <Spinner
+        android:id="@+id/empresasSpinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:onClick="onClickSalvarButton"
-        android:text="@string/salvar"
+        android:prompt="@string/empresa"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
 
     <Button
+        android:onClick="onClickSalvarButton"
+        android:id="@+id/salvarButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/salvar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/empresasSpinner" />
+
+    <Button
+        android:onClick="onClickExcluirButton"
         android:id="@+id/excluirButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:onClick="onClickExcluirButton"
         android:text="@string/excluir"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/salvarButton" />
 

@@ -1,8 +1,11 @@
 package com.eficaztech.firebasedemo.model;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
-public class Funcionario   {
+import java.io.Serializable;
+
+public class Funcionario implements Serializable {
 
     private String cpf;
     private String nome;
@@ -33,13 +36,6 @@ public class Funcionario   {
         this.email = email;
     }
 
-    @NonNull
-    @Override
-    public String toString() {
-        //return "Funcionario = { cpf = \"" + cpf + "\", nome = \"" + nome + "\", email = \"" + email + "\", empresa = \"" + empresa + "\" }";
-        return nome;
-    }
-
     public Empresa getEmpresa() {
         return empresa;
     }
@@ -47,4 +43,21 @@ public class Funcionario   {
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
+
+    @NonNull
+    @Override
+    public String toString() {
+        //return "Funcionario = { cpf = \"" + cpf + "\", nome = \"" + nome + "\", email = \"" + email + "\", empresa = \"" + empresa + "\" }";
+        return nome;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj == null) return false;
+        if (!(obj instanceof Funcionario)) return false;
+        Funcionario o = (Funcionario) obj;
+        if (o.getCpf().equals(this.getCpf())) return true;
+        return false;
+    }
+
 }

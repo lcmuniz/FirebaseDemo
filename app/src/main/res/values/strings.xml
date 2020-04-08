@@ -17,4 +17,6 @@
     <string name="produtos">Produtos</string>
     <string name="excluir">Excluir</string>
     <string name="salvar">Salvar</string>
+    <string name="funcionario">Funcionário</string>
+    <string name="funcionarios">Funcionários</string>
 </resources>

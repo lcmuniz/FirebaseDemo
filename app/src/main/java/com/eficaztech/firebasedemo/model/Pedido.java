@@ -1,6 +1,7 @@
 package com.eficaztech.firebasedemo.model;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,4 +51,15 @@ public class Pedido {
     public void setItensPedido(List<ItemPedido> itensPedido) {
         this.itensPedido = itensPedido;
     }
+
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj == null) return false;
+        if (!(obj instanceof Pedido)) return false;
+        Pedido o = (Pedido) obj;
+        if (o.getCodigo().equals(this.getCodigo())) return true;
+        return false;
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.eficaztech.firebasedemo.model;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.io.Serializable;
 
@@ -39,6 +40,15 @@ public class Cliente implements Serializable {
     public String toString() {
         //return "Cliente = { cpf = \"" + cpf + "\", nome = \"" + nome + "\", email = \"" + email + "\" }";
         return nome;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj == null) return false;
+        if (!(obj instanceof Cliente)) return false;
+        Cliente o = (Cliente) obj;
+        if (o.getCpf().equals(this.getCpf())) return true;
+        return false;
     }
 
 }

@@ -27,4 +27,8 @@ public class MainActivity extends AppCompatActivity {
     public void onClickProdutosButton(View view) {
         startActivity(new Intent(this, ProdutosActivity.class));
     }
+
+    public void onClickFuncionariosButton(View view) {
+        startActivity(new Intent(this, FuncionariosActivity.class));
+    }
 }

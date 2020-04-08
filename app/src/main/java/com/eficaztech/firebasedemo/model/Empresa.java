@@ -1,6 +1,7 @@
 package com.eficaztech.firebasedemo.model;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.io.Serializable;
 
@@ -40,6 +41,15 @@ public class Empresa implements Serializable {
     public String toString() {
         //return "Empresa = {" + " cnpj = \"" + cnpj + "\", endereco = \"" + endereco +  "\", nome = \"" + nome + "\" }";
         return nome;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj == null) return false;
+        if (!(obj instanceof Empresa)) return false;
+        Empresa o = (Empresa) obj;
+        if (o.getCnpj().equals(this.getCnpj())) return true;
+        return false;
     }
 
 }
