@@ -21,8 +21,12 @@ import java.util.List;
 
 public class ProdutosActivity extends AppCompatActivity {
 
-    ArrayList<Produto> produtos;
-    ArrayAdapter<Produto> produtosListAdapter;
+    private ListView produtosListView;
+
+    private ArrayList<Produto> produtos;
+    private ArrayAdapter<Produto> produtosListAdapter;
+
+    private ProdutoController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +35,20 @@ public class ProdutosActivity extends AppCompatActivity {
 
         EventBus.getDefault().register(this);
 
+        setComponents();
+        setController();
+
         configListView();
         loadProdutos();
 
+    }
+
+    private void setComponents() {
+        produtosListView = findViewById(R.id.produtosListView);
+    }
+
+    private void setController() {
+        controller = new ProdutoController();
     }
 
     @Override
@@ -43,7 +58,7 @@ public class ProdutosActivity extends AppCompatActivity {
     }
 
     private void loadProdutos() {
-        ProdutoController controller = new ProdutoController();
+
         controller.findAll(new IProdutoListener() {
             @Override
             public void onSuccess(List<Produto> produtos) {
@@ -53,7 +68,6 @@ public class ProdutosActivity extends AppCompatActivity {
     }
 
     private void configListView() {
-        ListView produtosListView = findViewById(R.id.produtosListView);
         produtos = new ArrayList<>();
         produtosListAdapter = new ArrayAdapter<Produto>(this, android.R.layout.simple_list_item_1, produtos);
         produtosListView.setAdapter(produtosListAdapter);

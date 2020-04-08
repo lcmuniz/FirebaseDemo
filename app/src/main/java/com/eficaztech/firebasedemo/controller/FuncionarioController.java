@@ -88,6 +88,8 @@ public class FuncionarioController {
     }
 
     public void excluir(Funcionario funcionario) {
+        if (funcionario == null) return;
+        if (funcionario.getCpf() == null || funcionario.getCpf().equals("")) return;
         db.child("funcionarios").child(funcionario.getCpf()).removeValue();
     }
 

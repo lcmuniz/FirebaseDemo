@@ -3,11 +3,12 @@ package com.eficaztech.firebasedemo.model;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Pedido {
+public class Pedido implements Serializable {
 
     private String codigo;
     private Cliente cliente;
@@ -20,12 +21,6 @@ public class Pedido {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
-    }
-
-    @NonNull
-    @Override
-    public String toString() {
-        return "Pedido = { codigo = \"" + codigo + "\", cliente = \"" + cliente + "\", empresa = \"" + empresa + "\" }";
     }
 
     public Cliente getCliente() {
@@ -52,6 +47,12 @@ public class Pedido {
         this.itensPedido = itensPedido;
     }
 
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Pedido = { codigo = \"" + codigo + "\", cliente = \"" + cliente + "\", empresa = \"" + empresa + "\" }";
+    }
 
     @Override
     public boolean equals(@Nullable Object obj) {

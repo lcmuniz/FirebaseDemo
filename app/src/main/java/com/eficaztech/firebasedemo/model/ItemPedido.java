@@ -3,7 +3,9 @@ package com.eficaztech.firebasedemo.model;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class ItemPedido  {
+import java.io.Serializable;
+
+public class ItemPedido implements Serializable {
     private String codigo;
     private Produto produto;
     private Integer quantidade;

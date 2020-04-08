@@ -19,4 +19,6 @@
     <string name="salvar">Salvar</string>
     <string name="funcionario">Funcionário</string>
     <string name="funcionarios">Funcionários</string>
+    <string name="pedidos">Pedidos</string>
+    <string name="pedido">Pedido</string>
 </resources>

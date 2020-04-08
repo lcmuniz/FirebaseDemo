@@ -88,6 +88,8 @@ public class ClienteController {
     }
 
     public void excluir(Cliente cliente) {
+        if (cliente == null) return;
+        if (cliente.getCpf() == null || cliente.getCpf().equals("")) return;
         db.child("clientes").child(cliente.getCpf()).removeValue();
     }
 }

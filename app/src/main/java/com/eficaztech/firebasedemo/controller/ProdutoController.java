@@ -65,6 +65,8 @@ public class ProdutoController {
     }
 
     public void excluir(Produto produto) {
+        if (produto == null) return;
+        if (produto.getCodigo() == null || produto.getCodigo().equals("")) return;
         db.child("produtos").child(produto.getCodigo()).removeValue();
     }
 

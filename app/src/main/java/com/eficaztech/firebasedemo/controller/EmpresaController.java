@@ -88,6 +88,8 @@ public class EmpresaController {
     }
 
     public void excluir(Empresa empresa) {
+        if (empresa == null) return;
+        if (empresa.getCnpj() == null || empresa.getCnpj().equals("")) return;
         db.child("empresas").child(empresa.getCnpj()).removeValue();
     }
 }

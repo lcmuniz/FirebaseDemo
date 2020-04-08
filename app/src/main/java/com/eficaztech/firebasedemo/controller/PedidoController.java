@@ -88,6 +88,8 @@ public class PedidoController {
     }
 
     public void excluir(Pedido pedido) {
+        if (pedido == null) return;
+        if (pedido.getCodigo() == null || pedido.getCodigo().equals("")) return;
         db.child("pedidos").child(pedido.getCodigo()).removeValue();
     }
 }

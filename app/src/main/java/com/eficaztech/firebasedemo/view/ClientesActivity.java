@@ -21,8 +21,12 @@ import java.util.List;
 
 public class ClientesActivity extends AppCompatActivity {
 
-    ArrayList<Cliente> clientes;
-    ArrayAdapter<Cliente> clientesListAdapter;
+    private ListView clientesListView;
+
+    private ClienteController controller;
+
+    private ArrayList<Cliente> clientes;
+    private ArrayAdapter<Cliente> clientesListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +35,21 @@ public class ClientesActivity extends AppCompatActivity {
 
         EventBus.getDefault().register(this);
 
+        setComponents();
+
+        setController();
+
         configListView();
         loadClientes();
 
+    }
+
+    private void setController() {
+        controller = new ClienteController();
+    }
+
+    private void setComponents() {
+        clientesListView = findViewById(R.id.empresasListView);
     }
 
     @Override
@@ -43,7 +59,6 @@ public class ClientesActivity extends AppCompatActivity {
     }
 
     private void loadClientes() {
-        ClienteController controller = new ClienteController();
         controller.findAll(new IClienteListener() {
             @Override
             public void onSuccess(List<Cliente> clientes) {
@@ -53,7 +68,6 @@ public class ClientesActivity extends AppCompatActivity {
     }
 
     private void configListView() {
-        ListView clientesListView = findViewById(R.id.empresasListView);
         clientes = new ArrayList<>();
         clientesListAdapter = new ArrayAdapter<Cliente>(this, android.R.layout.simple_list_item_1, clientes);
         clientesListView.setAdapter(clientesListAdapter);

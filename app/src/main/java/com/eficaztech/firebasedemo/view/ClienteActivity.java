@@ -12,17 +12,33 @@ import com.eficaztech.firebasedemo.model.Cliente;
 
 public class ClienteActivity extends AppCompatActivity {
 
-    EditText cpfEditText;
-    EditText nomeEditText;
-    EditText emailEditText;
+    private EditText cpfEditText;
+    private EditText nomeEditText;
+    private EditText emailEditText;
+
+    private ClienteController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cliente);
 
+        setComponents();
+
+        setController();
+
         loadCliente();
 
+    }
+
+    private void setController() {
+        controller = new ClienteController();
+    }
+
+    private void setComponents() {
+        cpfEditText = findViewById(R.id.cpfEditText);
+        nomeEditText = findViewById(R.id.nomeEditText);
+        emailEditText = findViewById(R.id.emailEditText);
     }
 
     private void loadCliente() {
@@ -32,10 +48,6 @@ public class ClienteActivity extends AppCompatActivity {
         if (cliente == null) {
             cliente = new Cliente();
         }
-
-        cpfEditText = findViewById(R.id.cpfEditText);
-        nomeEditText = findViewById(R.id.nomeEditText);
-        emailEditText = findViewById(R.id.emailEditText);
 
         cpfEditText.setText(cliente.getCpf());
         nomeEditText.setText(cliente.getNome());
@@ -50,7 +62,6 @@ public class ClienteActivity extends AppCompatActivity {
         cliente.setNome(nomeEditText.getText().toString());
         cliente.setEmail(emailEditText.getText().toString());
 
-        ClienteController controller = new ClienteController();
         controller.cadastrar(cliente);
 
         finish();
@@ -62,7 +73,6 @@ public class ClienteActivity extends AppCompatActivity {
         Cliente cliente = new Cliente();
         cliente.setCpf(cpfEditText.getText().toString());
 
-        ClienteController controller = new ClienteController();
         controller.excluir(cliente);
 
         finish();

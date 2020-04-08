@@ -12,17 +12,32 @@ import com.eficaztech.firebasedemo.model.Empresa;
 
 public class EmpresaActivity extends AppCompatActivity {
 
-    EditText cnpjEditText;
-    EditText nomeEditText;
-    EditText enderecoEditText;
+    private EditText cnpjEditText;
+    private EditText nomeEditText;
+    private EditText enderecoEditText;
+
+    private EmpresaController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empresa);
 
+        setComponents();
+        setController();
+
         loadEmpresa();
 
+    }
+
+    private void setComponents() {
+        cnpjEditText = findViewById(R.id.cnpjEditText);
+        nomeEditText = findViewById(R.id.nomeEditText);
+        enderecoEditText = findViewById(R.id.enderecoEditText);
+    }
+
+    private void setController() {
+        controller = new EmpresaController();
     }
 
     private void loadEmpresa() {
@@ -32,10 +47,6 @@ public class EmpresaActivity extends AppCompatActivity {
         if (empresa == null) {
             empresa = new Empresa();
         }
-
-        cnpjEditText = findViewById(R.id.cnpjEditText);
-        nomeEditText = findViewById(R.id.nomeEditText);
-        enderecoEditText = findViewById(R.id.enderecoEditText);
 
         cnpjEditText.setText(empresa.getCnpj());
         nomeEditText.setText(empresa.getNome());
@@ -50,7 +61,6 @@ public class EmpresaActivity extends AppCompatActivity {
         empresa.setNome(nomeEditText.getText().toString());
         empresa.setEndereco(enderecoEditText.getText().toString());
 
-        EmpresaController controller = new EmpresaController();
         controller.cadastrar(empresa);
 
         finish();
@@ -62,7 +72,6 @@ public class EmpresaActivity extends AppCompatActivity {
         Empresa empresa = new Empresa();
         empresa.setCnpj(cnpjEditText.getText().toString());
 
-        EmpresaController controller = new EmpresaController();
         controller.excluir(empresa);
 
         finish();

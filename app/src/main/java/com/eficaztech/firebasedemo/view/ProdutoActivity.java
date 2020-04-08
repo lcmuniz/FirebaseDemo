@@ -14,17 +14,33 @@ import java.util.UUID;
 
 public class ProdutoActivity extends AppCompatActivity {
 
-    EditText codigoEditText;
-    EditText nomeEditText;
-    EditText precoEditText;
+    private EditText codigoEditText;
+    private EditText nomeEditText;
+    private EditText precoEditText;
+
+    private ProdutoController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_produto);
 
+        setComponents();
+        setController();
+
         loadProduto();
 
+    }
+
+    private void setComponents() {
+        codigoEditText = findViewById(R.id.codigoEditText);
+        nomeEditText = findViewById(R.id.nomeEditText);
+        precoEditText = findViewById(R.id.precoEditText);
+
+    }
+
+    private void setController() {
+        controller = new ProdutoController();
     }
 
     private void loadProduto() {
@@ -36,10 +52,6 @@ public class ProdutoActivity extends AppCompatActivity {
             produto.setCodigo(UUID.randomUUID().toString());
             produto.setPreco(new Double(0));
         }
-
-        codigoEditText = findViewById(R.id.codigoEditText);
-        nomeEditText = findViewById(R.id.nomeEditText);
-        precoEditText = findViewById(R.id.precoEditText);
 
         codigoEditText.setText(produto.getCodigo());
         nomeEditText.setText(produto.getNome());
@@ -54,7 +66,6 @@ public class ProdutoActivity extends AppCompatActivity {
         produto.setNome(nomeEditText.getText().toString());
         produto.setPreco(Double.valueOf(precoEditText.getText().toString()));
 
-        ProdutoController controller = new ProdutoController();
         controller.cadastrar(produto);
 
         finish();
@@ -66,7 +77,6 @@ public class ProdutoActivity extends AppCompatActivity {
         Produto produto = new Produto();
         produto.setCodigo(codigoEditText.getText().toString());
 
-        ProdutoController controller = new ProdutoController();
         controller.excluir(produto);
 
         finish();

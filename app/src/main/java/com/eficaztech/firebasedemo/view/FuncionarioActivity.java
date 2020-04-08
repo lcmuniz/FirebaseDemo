@@ -23,10 +23,13 @@ import java.util.List;
 
 public class FuncionarioActivity extends AppCompatActivity {
 
-    EditText cpfEditText;
-    EditText nomeEditText;
-    EditText emailEditText;
-    Spinner empresasSpinner;
+    private EditText cpfEditText;
+    private EditText nomeEditText;
+    private EditText emailEditText;
+    private Spinner empresasSpinner;
+
+    private EmpresaController empresaController;
+    private FuncionarioController funcionarioController;
 
     private ArrayList<Empresa> empresas;
     private ArrayAdapter<Empresa> empresasListAdapter;
@@ -38,9 +41,25 @@ public class FuncionarioActivity extends AppCompatActivity {
 
         EventBus.getDefault().register(this);
 
+        setComponents();
+
+        setControllers();
+
         configSpinner();
         loadEmpresas();
 
+    }
+
+    private void setComponents() {
+        cpfEditText = findViewById(R.id.cpfEditText);
+        nomeEditText = findViewById(R.id.nomeEditText);
+        emailEditText = findViewById(R.id.emailEditText);
+        empresasSpinner = findViewById(R.id.empresasSpinner);
+    }
+
+    private void setControllers() {
+        empresaController = new EmpresaController();
+        funcionarioController = new FuncionarioController();
     }
 
     @Override
@@ -50,8 +69,7 @@ public class FuncionarioActivity extends AppCompatActivity {
     }
 
     private void loadEmpresas() {
-        EmpresaController controller = new EmpresaController();
-        controller.findAll(new IEmpresaListener() {
+        empresaController.findAll(new IEmpresaListener() {
             @Override
             public void onSuccess(List<Empresa> empresas) {
                 EventBus.getDefault().post(new Success(empresas));
@@ -60,11 +78,9 @@ public class FuncionarioActivity extends AppCompatActivity {
     }
 
     private void configSpinner() {
-        Spinner empresasSpinner = findViewById(R.id.empresasSpinner);
         empresas = new ArrayList<>();
         empresasListAdapter = new ArrayAdapter<Empresa>(this, android.R.layout.simple_list_item_1, empresas);
         empresasSpinner.setAdapter(empresasListAdapter);
-        //empresasListView.setOnItemClickListener((adapterView, view, position, l) -> onClickEmpresasListView(position));
     }
 
     private void loadFuncionario() {
@@ -74,11 +90,6 @@ public class FuncionarioActivity extends AppCompatActivity {
         if (funcionario == null) {
             funcionario = new Funcionario();
         }
-
-        cpfEditText = findViewById(R.id.cpfEditText);
-        nomeEditText = findViewById(R.id.nomeEditText);
-        emailEditText = findViewById(R.id.emailEditText);
-        empresasSpinner = findViewById(R.id.empresasSpinner);
 
         cpfEditText.setText(funcionario.getCpf());
         nomeEditText.setText(funcionario.getNome());
@@ -95,8 +106,8 @@ public class FuncionarioActivity extends AppCompatActivity {
         funcionario.setNome(nomeEditText.getText().toString());
         funcionario.setEmail(emailEditText.getText().toString());
         funcionario.setEmpresa(empresas.get(empresasSpinner.getSelectedItemPosition()));
-        FuncionarioController controller = new FuncionarioController();
-        controller.cadastrar(funcionario);
+
+        funcionarioController.cadastrar(funcionario);
 
         finish();
 
@@ -107,8 +118,7 @@ public class FuncionarioActivity extends AppCompatActivity {
         Funcionario funcionario = new Funcionario();
         funcionario.setCpf(cpfEditText.getText().toString());
 
-        FuncionarioController controller = new FuncionarioController();
-        controller.excluir(funcionario);
+        funcionarioController.excluir(funcionario);
 
         finish();
 

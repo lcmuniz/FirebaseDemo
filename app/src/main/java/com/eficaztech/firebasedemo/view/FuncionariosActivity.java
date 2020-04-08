@@ -21,8 +21,12 @@ import java.util.List;
 
 public class FuncionariosActivity extends AppCompatActivity {
 
-    ArrayList<Funcionario> funcionarios;
-    ArrayAdapter<Funcionario> funcionariosListAdapter;
+    private ListView funcionariosListView;
+
+    private FuncionarioController controller;
+
+    private ArrayList<Funcionario> funcionarios;
+    private ArrayAdapter<Funcionario> funcionariosListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +35,20 @@ public class FuncionariosActivity extends AppCompatActivity {
 
         EventBus.getDefault().register(this);
 
+        setComponents();
+        setController();
+
         configListView();
         loadFuncionarios();
 
+    }
+
+    private void setComponents() {
+        funcionariosListView = findViewById(R.id.funcionariosListView);
+    }
+
+    private void setController() {
+        controller = new FuncionarioController();
     }
 
     @Override
@@ -43,7 +58,6 @@ public class FuncionariosActivity extends AppCompatActivity {
     }
 
     private void loadFuncionarios() {
-        FuncionarioController controller = new FuncionarioController();
         controller.findAll(new IFuncionarioListener() {
             @Override
             public void onSuccess(List<Funcionario> funcionarios) {
@@ -53,7 +67,6 @@ public class FuncionariosActivity extends AppCompatActivity {
     }
 
     private void configListView() {
-        ListView funcionariosListView = findViewById(R.id.funcionariosListView);
         funcionarios = new ArrayList<>();
         funcionariosListAdapter = new ArrayAdapter<Funcionario>(this, android.R.layout.simple_list_item_1, funcionarios);
         funcionariosListView.setAdapter(funcionariosListAdapter);

@@ -21,8 +21,12 @@ import java.util.List;
 
 public class EmpresasActivity extends AppCompatActivity {
 
-    ArrayList<Empresa> empresas;
-    ArrayAdapter<Empresa> empresasListAdapter;
+    private ListView empresasListView;
+
+    private EmpresaController controller;
+
+    private ArrayList<Empresa> empresas;
+    private ArrayAdapter<Empresa> empresasListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +35,20 @@ public class EmpresasActivity extends AppCompatActivity {
 
         EventBus.getDefault().register(this);
 
+        setComponents();
+        setController();
+
         configListView();
         loadEmpresas();
 
+    }
+
+    private void setComponents() {
+        empresasListView = findViewById(R.id.empresasListView);
+    }
+
+    private void setController() {
+        controller = new EmpresaController();
     }
 
     @Override
@@ -43,7 +58,6 @@ public class EmpresasActivity extends AppCompatActivity {
     }
 
     private void loadEmpresas() {
-        EmpresaController controller = new EmpresaController();
         controller.findAll(new IEmpresaListener() {
             @Override
             public void onSuccess(List<Empresa> empresas) {
@@ -53,7 +67,6 @@ public class EmpresasActivity extends AppCompatActivity {
     }
 
     private void configListView() {
-        ListView empresasListView = findViewById(R.id.empresasListView);
         empresas = new ArrayList<>();
         empresasListAdapter = new ArrayAdapter<Empresa>(this, android.R.layout.simple_list_item_1, empresas);
         empresasListView.setAdapter(empresasListAdapter);
@@ -72,7 +85,6 @@ public class EmpresasActivity extends AppCompatActivity {
 
     private class Success {
         private final List<Empresa> empresas;
-
         public Success(List<Empresa> empresas) {
             this.empresas = empresas;
         }

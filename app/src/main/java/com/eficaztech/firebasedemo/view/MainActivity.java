@@ -31,4 +31,9 @@ public class MainActivity extends AppCompatActivity {
     public void onClickFuncionariosButton(View view) {
         startActivity(new Intent(this, FuncionariosActivity.class));
     }
+
+    public void onClickPedidosButton(View view) {
+        startActivity(new Intent(this, PedidosActivity.class));
+    }
+
 }
