@@ -87,4 +87,7 @@ public class PedidoController {
                 });
     }
 
+    public void excluir(Pedido pedido) {
+        db.child("pedidos").child(pedido.getCodigo()).removeValue();
+    }
 }

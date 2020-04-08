@@ -25,14 +25,14 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/adicionarButton"
+        app:layout_constraintBottom_toTopOf="@+id/salvarButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:onClick="onClickAdicionarButton"
-        android:id="@+id/adicionarButton"
+        android:id="@+id/salvarButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/adicionar"

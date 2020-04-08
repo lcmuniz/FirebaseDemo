@@ -43,7 +43,7 @@ public class EmpresaActivity extends AppCompatActivity {
 
     }
 
-    public void onClickAdicionarButton(View view) {
+    public void onClickSalvarButton(View view) {
 
         Empresa empresa = new Empresa();
         empresa.setCnpj(cnpjEditText.getText().toString());

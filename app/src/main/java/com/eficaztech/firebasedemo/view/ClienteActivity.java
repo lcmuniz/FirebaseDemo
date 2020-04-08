@@ -1,10 +1,10 @@
 package com.eficaztech.firebasedemo.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.eficaztech.firebasedemo.R;
 import com.eficaztech.firebasedemo.controller.ClienteController;
@@ -43,7 +43,7 @@ public class ClienteActivity extends AppCompatActivity {
 
     }
 
-    public void onClickAdicionarButton(View view) {
+    public void onClickSalvarButton(View view) {
 
         Cliente cliente = new Cliente();
         cliente.setCpf(cpfEditText.getText().toString());

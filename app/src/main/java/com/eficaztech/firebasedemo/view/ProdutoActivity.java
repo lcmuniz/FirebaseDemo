@@ -7,9 +7,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.eficaztech.firebasedemo.R;
-import com.eficaztech.firebasedemo.controller.EmpresaController;
 import com.eficaztech.firebasedemo.controller.ProdutoController;
-import com.eficaztech.firebasedemo.model.Empresa;
 import com.eficaztech.firebasedemo.model.Produto;
 
 import java.util.UUID;
@@ -49,7 +47,7 @@ public class ProdutoActivity extends AppCompatActivity {
 
     }
 
-    public void onClickAdicionarButton(View view) {
+    public void onClickSalvarButton(View view) {
 
         Produto produto = new Produto();
         produto.setCodigo(codigoEditText.getText().toString());

@@ -1,12 +1,12 @@
 package com.eficaztech.firebasedemo.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.eficaztech.firebasedemo.R;
 import com.eficaztech.firebasedemo.controller.ClienteController;

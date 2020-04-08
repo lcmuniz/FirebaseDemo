@@ -2,7 +2,6 @@ package com.eficaztech.firebasedemo.controller;
 
 import androidx.annotation.NonNull;
 
-import com.eficaztech.firebasedemo.model.Cliente;
 import com.eficaztech.firebasedemo.model.Empresa;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

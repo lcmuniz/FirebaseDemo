@@ -87,4 +87,8 @@ public class FuncionarioController {
                 });
     }
 
+    public void excluir(Funcionario funcionario) {
+        db.child("funcionarios").child(funcionario.getCpf()).removeValue();
+    }
+
 }

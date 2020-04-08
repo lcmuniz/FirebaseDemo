@@ -16,4 +16,5 @@
     <string name="preco">Preço</string>
     <string name="produtos">Produtos</string>
     <string name="excluir">Excluir</string>
+    <string name="salvar">Salvar</string>
 </resources>

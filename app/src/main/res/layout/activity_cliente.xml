@@ -62,12 +62,12 @@
         app:layout_constraintTop_toBottomOf="@+id/nomeEditText" />
 
     <Button
-        android:onClick="onClickAdicionarButton"
-        android:id="@+id/adicionarButton"
+        android:onClick="onClickSalvarButton"
+        android:id="@+id/salvarButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/adicionar"
+        android:text="@string/salvar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
@@ -81,6 +81,6 @@
         android:text="@string/excluir"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/adicionarButton" />
+        app:layout_constraintTop_toBottomOf="@+id/salvarButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
