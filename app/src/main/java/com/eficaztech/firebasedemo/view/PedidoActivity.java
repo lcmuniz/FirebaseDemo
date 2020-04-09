@@ -1,9 +1,11 @@
 package com.eficaztech.firebasedemo.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,10 +14,12 @@ import com.eficaztech.firebasedemo.R;
 import com.eficaztech.firebasedemo.controller.ClienteController;
 import com.eficaztech.firebasedemo.controller.EmpresaController;
 import com.eficaztech.firebasedemo.controller.IClienteListener;
+import com.eficaztech.firebasedemo.controller.IPedidoListener;
 import com.eficaztech.firebasedemo.controller.PedidoController;
 import com.eficaztech.firebasedemo.controller.IEmpresaListener;
 import com.eficaztech.firebasedemo.model.Cliente;
 import com.eficaztech.firebasedemo.model.Empresa;
+import com.eficaztech.firebasedemo.model.ItemPedido;
 import com.eficaztech.firebasedemo.model.Pedido;
 
 import org.greenrobot.eventbus.EventBus;
@@ -30,6 +34,7 @@ public class PedidoActivity extends AppCompatActivity {
     private EditText codigoEditText;
     private Spinner empresasSpinner;
     private Spinner clientesSpinner;
+    private ListView itensPedidoListView;
 
     private EmpresaController empresaController;
     private ClienteController clienteController;
@@ -39,6 +44,10 @@ public class PedidoActivity extends AppCompatActivity {
     private ArrayAdapter<Empresa> empresasListAdapter;
     private ArrayList<Cliente> clientes;
     private ArrayAdapter<Cliente> clientesListAdapter;
+    private List<ItemPedido> itensPedido;
+    private ArrayAdapter<ItemPedido> itensPedidoListAdapter;
+
+    private Pedido pedido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +70,7 @@ public class PedidoActivity extends AppCompatActivity {
         codigoEditText = findViewById(R.id.codigoEditText);
         empresasSpinner = findViewById(R.id.empresasSpinner);
         clientesSpinner = findViewById(R.id.clientesSpinner);
+        itensPedidoListView = findViewById(R.id.itensPedidoListView);
     }
 
     private void setControllers() {
@@ -107,19 +117,13 @@ public class PedidoActivity extends AppCompatActivity {
         });
     }
 
-    private void loadPedido() {
-
-        Pedido pedido = (Pedido) getIntent().getSerializableExtra("pedido");
-        Cliente cliente = (Cliente) getIntent().getSerializableExtra("cliente");
-
-        if (pedido == null) {
-            pedido = new Pedido();
-            pedido.setCodigo(UUID.randomUUID().toString());
-            pedido.setEmpresa(empresas.get(0));
-            pedido.setCliente(cliente);
-        }
+    private void loadPedido(Pedido pedido) {
 
         codigoEditText.setText(pedido.getCodigo());
+
+        if (pedido.getEmpresa() == null) {
+            pedido.setEmpresa(empresas.get(0));
+        }
 
         int posEmp = empresas.indexOf(pedido.getEmpresa());
         empresasSpinner.setSelection(posEmp);
@@ -127,6 +131,22 @@ public class PedidoActivity extends AppCompatActivity {
         int posCli = clientes.indexOf(pedido.getCliente());
         clientesSpinner.setSelection(posCli);
 
+        loadItensPedido(pedido.getItensPedido());
+
+    }
+
+    private void loadItensPedido(List<ItemPedido> itensPedido) {
+        this.itensPedido = itensPedido;
+        itensPedidoListAdapter = new ArrayAdapter<ItemPedido>(this, android.R.layout.simple_list_item_1, this.itensPedido);
+        itensPedidoListView.setAdapter(itensPedidoListAdapter);
+        itensPedidoListView.setOnItemClickListener((adapterView, view, position, l) -> onClickItensPedidoListView(position));
+    }
+
+    private void onClickItensPedidoListView(int position) {
+        Intent intent = new Intent(this, ItemPedidoActivity.class);
+        intent.putExtra("itemPedido", itensPedido.get(position));
+        intent.putExtra("pedido", pedido);
+        startActivity(intent);
     }
 
     public void onClickSalvarButton(View view) {
@@ -150,6 +170,30 @@ public class PedidoActivity extends AppCompatActivity {
 
         finish();
 
+    }
+
+    public void onClickAdicionarItemButton(View view) {
+        ItemPedido itemPedido = new ItemPedido();
+        itemPedido.setCodigo(UUID.randomUUID().toString());
+        itemPedido.setQuantidade(1);
+
+        Intent intent = new Intent(this, ItemPedidoActivity.class);
+        intent.putExtra("itemPedido", itemPedido);
+        intent.putExtra("pedido", pedido);
+        startActivity(intent);
+    }
+
+    public static class ItemPedidoChanged {
+    }
+
+    @Subscribe
+    public void on(ItemPedidoChanged event) {
+        pedidoController.findByCodigo(pedido.getCodigo(), new IPedidoListener() {
+            @Override
+            public void onSuccess(Pedido pedido) {
+                loadPedido(pedido);
+            }
+        });
     }
 
     private class SuccessEmpresas {
@@ -181,7 +225,8 @@ public class PedidoActivity extends AppCompatActivity {
         clientes.clear();
         clientes.addAll(success.clientes);
         clientesListAdapter.notifyDataSetChanged();
-        loadPedido();
+        pedido = (Pedido) getIntent().getSerializableExtra("pedido");
+        loadPedido(pedido);
     }
 
 }

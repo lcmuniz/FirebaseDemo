@@ -21,4 +21,7 @@
     <string name="funcionarios">Funcionários</string>
     <string name="pedidos">Pedidos</string>
     <string name="pedido">Pedido</string>
+    <string name="adicionar_item">Adicionar Item</string>
+    <string name="item_do_pedido">Item do Pedido</string>
+    <string name="quantidade">Quantidade</string>
 </resources>

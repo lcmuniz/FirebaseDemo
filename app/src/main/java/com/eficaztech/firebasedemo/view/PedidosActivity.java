@@ -23,6 +23,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class PedidosActivity extends AppCompatActivity {
 
@@ -124,9 +125,15 @@ public class PedidosActivity extends AppCompatActivity {
     }
 
     public void onClickAdicionarButton(View view) {
-        Intent intent = new Intent(this, PedidoActivity.class);
+
+        Pedido pedido = new Pedido();
+        pedido.setCodigo(UUID.randomUUID().toString());
+        pedido.setEmpresa(null);
         int position = clientesSpinner.getSelectedItemPosition();
-        intent.putExtra("cliente", clientes.get(position));
+        pedido.setCliente(clientes.get(position));
+
+        Intent intent = new Intent(this, PedidoActivity.class);
+        intent.putExtra("pedido", pedido);
         startActivity(intent);
     }
 

@@ -87,10 +87,6 @@ public class FuncionarioActivity extends AppCompatActivity {
 
         Funcionario funcionario = (Funcionario) getIntent().getSerializableExtra("funcionario");
 
-        if (funcionario == null) {
-            funcionario = new Funcionario();
-        }
-
         cpfEditText.setText(funcionario.getCpf());
         nomeEditText.setText(funcionario.getNome());
         emailEditText.setText(funcionario.getEmail());

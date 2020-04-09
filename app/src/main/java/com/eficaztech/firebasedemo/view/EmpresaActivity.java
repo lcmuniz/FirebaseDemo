@@ -44,10 +44,6 @@ public class EmpresaActivity extends AppCompatActivity {
 
         Empresa empresa = (Empresa) getIntent().getSerializableExtra("empresa");
 
-        if (empresa == null) {
-            empresa = new Empresa();
-        }
-
         cnpjEditText.setText(empresa.getCnpj());
         nomeEditText.setText(empresa.getNome());
         enderecoEditText.setText(empresa.getEndereco());

@@ -21,6 +21,7 @@
         <activity android:name=".view.FuncionariosActivity" />
         <activity android:name=".view.PedidoActivity" />
         <activity android:name=".view.PedidosActivity" />
+        <activity android:name=".view.ItemPedidoActivity" />
         <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

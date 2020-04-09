@@ -80,7 +80,10 @@ public class EmpresasActivity extends AppCompatActivity {
     }
 
     public void onClickAdicionarButton(View view) {
-        startActivity(new Intent(this, EmpresaActivity.class));
+        Empresa empresa = new Empresa();
+        Intent intent = new Intent(this, EmpresaActivity.class);
+        intent.putExtra("empresa", empresa);
+        startActivity(intent);
     }
 
     private class Success {

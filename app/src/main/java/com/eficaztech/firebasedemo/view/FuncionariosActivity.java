@@ -80,7 +80,10 @@ public class FuncionariosActivity extends AppCompatActivity {
     }
 
     public void onClickAdicionarButton(View view) {
-        startActivity(new Intent(this, FuncionarioActivity.class));
+        Funcionario funcionario = new Funcionario();
+        Intent intent = new Intent(this, FuncionarioActivity.class);
+        intent.putExtra("funcionario", funcionario);
+        startActivity(intent);
     }
 
     private class Success {

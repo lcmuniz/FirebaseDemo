@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.PedidoActivity">
+    tools:context=".view.ItemPedidoActivity">
 
     <TextView
         android:background="@color/colorAccent"
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/pedido"
+        android:text="@string/item_do_pedido"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -34,72 +34,50 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Spinner
-        android:id="@+id/empresasSpinner"
+        android:id="@+id/produtosSpinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:prompt="@string/empresa"
+        android:prompt="@string/produto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/codigoEditText" />
 
-    <Spinner
-        android:id="@+id/clientesSpinner"
+    <EditText
+        android:id="@+id/quantidadeEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:prompt="@string/empresa"
+        android:autofillHints="no"
+        android:ems="10"
+        android:hint="@string/quantidade"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/empresasSpinner" />
-
-    <ListView
-        android:id="@+id/itensPedidoListView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/adicionarItemButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clientesSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/produtosSpinner" />
 
     <Button
-        android:id="@+id/adicionarItemButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:onClick="onClickAdicionarItemButton"
-        android:text="@string/adicionar_item"
-        app:layout_constraintBottom_toTopOf="@+id/salvarButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
+        android:onClick="onClickSalvarButton"
         android:id="@+id/salvarButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:onClick="onClickSalvarButton"
+        android:layout_marginTop="8dp"
         android:text="@string/salvar"
-        app:layout_constraintBottom_toTopOf="@+id/excluirButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quantidadeEditText" />
 
     <Button
+        android:onClick="onClickExcluirButton"
         android:id="@+id/excluirButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:onClick="onClickExcluirButton"
+        android:layout_marginTop="8dp"
         android:text="@string/excluir"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/salvarButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

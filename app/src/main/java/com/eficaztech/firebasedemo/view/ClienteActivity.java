@@ -45,10 +45,6 @@ public class ClienteActivity extends AppCompatActivity {
 
         Cliente cliente = (Cliente) getIntent().getSerializableExtra("cliente");
 
-        if (cliente == null) {
-            cliente = new Cliente();
-        }
-
         cpfEditText.setText(cliente.getCpf());
         nomeEditText.setText(cliente.getNome());
         emailEditText.setText(cliente.getEmail());

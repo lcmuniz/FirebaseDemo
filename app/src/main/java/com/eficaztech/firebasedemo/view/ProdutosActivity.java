@@ -18,6 +18,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class ProdutosActivity extends AppCompatActivity {
 
@@ -81,7 +82,13 @@ public class ProdutosActivity extends AppCompatActivity {
     }
 
     public void onClickAdicionarButton(View view) {
-        startActivity(new Intent(this, ProdutoActivity.class));
+        Produto produto = new Produto();
+        produto.setCodigo(UUID.randomUUID().toString());
+        produto.setPreco(new Double(0));
+
+        Intent intent = new Intent(this, ProdutoActivity.class);
+        intent.putExtra("produto", produto);
+        startActivity(intent);
     }
 
     private class Success {

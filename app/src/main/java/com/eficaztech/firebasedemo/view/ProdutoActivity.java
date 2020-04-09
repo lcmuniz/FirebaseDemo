@@ -47,12 +47,6 @@ public class ProdutoActivity extends AppCompatActivity {
 
         Produto produto = (Produto) getIntent().getSerializableExtra("produto");
 
-        if (produto == null) {
-            produto = new Produto();
-            produto.setCodigo(UUID.randomUUID().toString());
-            produto.setPreco(new Double(0));
-        }
-
         codigoEditText.setText(produto.getCodigo());
         nomeEditText.setText(produto.getNome());
         precoEditText.setText(produto.getPreco().toString());

@@ -81,7 +81,10 @@ public class ClientesActivity extends AppCompatActivity {
     }
 
     public void onClickAdicionarButton(View view) {
-        startActivity(new Intent(this, ClienteActivity.class));
+        Cliente cliente = new Cliente();
+        Intent intent = new Intent(this, ClienteActivity.class);
+        intent.putExtra("cliente", cliente);
+        startActivity(intent);
     }
 
     private class Success {
